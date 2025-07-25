@@ -1,0 +1,31 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 100%;
+  font-family: 'Jersey 10', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #052659, #021024);
+  padding: 10px;
+}
+
+.todo-container {
+  width: 100%;
+  max-width: 540px;
+  background-color: #7da0ca;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+  border-radius: 20px;
+}
+
+.todo-title {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}

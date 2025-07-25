@@ -38,9 +38,15 @@ html, body {
   margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   font-size: 1.1rem;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .done-checkbox {
@@ -77,6 +83,38 @@ html, body {
 }
 
 .delete-btn:hover {
+  background: #e60000;
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+#filter-tasks {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid #021024;
+  background: #fff;
+  color: #021024;
+  font-size: 1em;
+}
+
+#clear-all {
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 18px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#clear-all:hover {
   background: #e60000;
 }
 

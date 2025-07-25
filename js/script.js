@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Create list item
     const li = document.createElement('li');
     li.className = 'todo-item';
-    li.innerHTML = `<input type="checkbox" class="done-checkbox"> <span class="task">${task}</span> <span class="date">${date}</span> <button class="delete-btn">Delete</button>`;
+    li.innerHTML = `<div class="item-left"><input type="checkbox" class="done-checkbox"> <span class="task">${task}</span> <span class="date">${date}</span></div><button class="delete-btn">Delete</button>`;
     list.appendChild(li);
     input.value = '';
     dateInput.value = '';
@@ -27,5 +27,23 @@ document.addEventListener('DOMContentLoaded', function () {
     li.querySelector('.delete-btn').addEventListener('click', function() {
       li.remove();
     });
+  });
+
+  document.getElementById('filter-tasks').addEventListener('change', function (e) {
+    const filter = e.target.value;
+    const items = list.querySelectorAll('.todo-item');
+    items.forEach(function (li) {
+      if (filter === 'all') {
+        li.style.display = '';
+      } else if (filter === 'done') {
+        li.style.display = li.classList.contains('done') ? '' : 'none';
+      } else {
+        li.style.display = li.classList.contains('done') ? 'none' : '';
+      }
+    });
+  });
+
+  document.getElementById('clear-all').addEventListener('click', function () {
+    list.innerHTML = '';
   });
 });

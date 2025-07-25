@@ -24,6 +24,34 @@ html, body {
   border-radius: 20px;
 }
 
+#todo-list {
+  margin-top: 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-item {
+  background: #fff;
+  color: #021024;
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  font-size: 1.1rem;
+}
+
+.todo-item .task {
+  font-weight: 500;
+}
+
+.todo-item .date {
+  font-size: 0.97em;
+  color: #7da0ca;
+}
+
 .todo-title {
   text-align: center;
   color: #fff;

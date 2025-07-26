@@ -4,12 +4,33 @@ document.addEventListener('DOMContentLoaded', function () {
   const dateInput = document.getElementById('todo-date');
   const list = document.getElementById('todo-list');
 
+  function updateNoTasksPlaceholder() {
+    if (list.children.length === 0) {
+      const li = document.createElement('li');
+      li.className = 'no-tasks';
+      li.textContent = 'No tasks added';
+      list.appendChild(li);
+    } else {
+      const placeholder = list.querySelector('.no-tasks');
+      if (placeholder) placeholder.remove();
+    }
+  }
+
+  updateNoTasksPlaceholder();
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     const task = input.value.trim();
     const date = dateInput.value;
     if (!task || !date) {
       alert('Please enter both a task and a date.');
+      return;
+    }
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const selectedDate = new Date(date);
+    if (selectedDate < today) {
+      alert('Cannot select a date in the past.');
       return;
     }
     // Create list item
@@ -19,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     list.appendChild(li);
     input.value = '';
     dateInput.value = '';
+    updateNoTasksPlaceholder();
 
     li.querySelector('.done-checkbox').addEventListener('change', function(e) {
       li.classList.toggle('done', e.target.checked);
@@ -26,10 +48,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     li.querySelector('.delete-btn').addEventListener('click', function() {
       li.remove();
+      updateNoTasksPlaceholder();
     });
   });
 
   document.getElementById('filter-tasks').addEventListener('change', function (e) {
+    updateNoTasksPlaceholder();
     const filter = e.target.value;
     const items = list.querySelectorAll('.todo-item');
     items.forEach(function (li) {
@@ -44,6 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.getElementById('clear-all').addEventListener('click', function () {
-    list.innerHTML = '';
+    if (confirm('Are you sure you want to clear all tasks?')) {
+      list.innerHTML = '';
+      updateNoTasksPlaceholder();
+    }
   });
 });

@@ -118,6 +118,14 @@ html, body {
   background: #e60000;
 }
 
+.todo-logo {
+  display: block;
+  margin: 0 auto 8px auto;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
 .todo-title {
   text-align: center;
   color: #fff;

@@ -5,13 +5,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const list = document.getElementById('todo-list');
 
   function updateNoTasksPlaceholder() {
-    if (list.children.length === 0) {
-      const li = document.createElement('li');
-      li.className = 'no-tasks';
-      li.textContent = 'No tasks added';
-      list.appendChild(li);
+    const filter = document.getElementById('filter-tasks').value;
+    const items = Array.from(list.querySelectorAll('.todo-item'));
+    let visibleCount = 0;
+    items.forEach(function(li) {
+      if (li.style.display !== 'none') visibleCount++;
+    });
+    let msg = 'No tasks added';
+    if (filter === 'done') msg = 'No done tasks';
+    if (filter === 'pending') msg = 'No pending tasks';
+    const placeholder = list.querySelector('.no-tasks');
+    if (visibleCount === 0) {
+      if (!placeholder) {
+        const li = document.createElement('li');
+        li.className = 'no-tasks';
+        li.textContent = msg;
+        list.appendChild(li);
+      } else {
+        placeholder.textContent = msg;
+      }
     } else {
-      const placeholder = list.querySelector('.no-tasks');
       if (placeholder) placeholder.remove();
     }
   }
